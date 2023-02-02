@@ -52,12 +52,18 @@ transaction(songName: String) {
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
-pub fun main(address: Address): [UInt64] {
-  let publicCollection = getAccount(address).getCapability(Record.CollectionPublicPath)
+pub fun main(address: Address): [&Record.NFT?] {
+  let recordCollection = getAccount(address).getCapability(Record.CollectionPublicPath)
                           .borrow<&Record.Collection{Record.CollectionPublic, NonFungibleToken.CollectionPublic}>()
                           ?? panic("The address does not have a Collection")
 
-  return publicCollection.getIDs()
+  var recordResults: [&Record.NFT?] = []
+
+  for record in recordCollection.getIDs() {
+    recordResults.append(recordCollection.borrowRecordNFT(id: record))
+  }
+
+  return recordResults
 }
 ```
 
@@ -98,22 +104,26 @@ import Artist from 0xf8d6e0586b0a20c7
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
-pub fun main(address: Address): [UInt64] {
+pub fun main(address: Address): {String: [&Record.NFT?]}{
 
-  let artist = getAccount(address).getCapability(/public/Profile)
+  let artist = getAccount(address).getCapability(/public/Profile1)
                 .borrow<&Artist.Profile>()
                 ?? panic("the address does not have a profile")
 
 
   let recordCapability: Capability<&Record.Collection{Record.CollectionPublic}> = artist.recordCollection
 
-  let collection: &Record.Collection{Record.CollectionPublic} = recordCapability.borrow()!
+  let recordCollection: &Record.Collection{Record.CollectionPublic} = recordCapability.borrow()!
 
-  // let collection = getAccount(address).getCapability(Record.CollectionPublicPath)
-  //                         .borrow<&Record.Collection{Record.CollectionPublic, NonFungibleToken.CollectionPublic}>()
-  //                         ?? panic("The address does not have a Collection")
+  var recordResults: [&Record.NFT?] = []
+  var artistRecordsResult: {String: [&Record.NFT?]} = {}
+  
+  for record in recordCollection.getIDs() {
+    recordResults.append(recordCollection.borrowRecordNFT(id: record))
+  }
 
-  return collection.getIDs()
+  return {artist.name: recordResults}
+
 }
 ```
 
