@@ -1,6 +1,7 @@
 1. Write a transaction to save a @Record.Collection to the signer's account, making sure to link the appropriate interfaces to the public path.
 
-```import Record from 0xf8d6e0586b0a20c7
+```
+import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
 transaction() {
@@ -19,11 +20,13 @@ transaction() {
   execute {
 
   }
-}```
+}
+```
 
 2. Write a transaction to mint some @Record.NFTs to the user's @Record.Collection
 
-```import Record from 0xf8d6e0586b0a20c7
+```
+import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
 transaction(songName: String) {
@@ -40,7 +43,8 @@ transaction(songName: String) {
     collection.deposit(token: <- record)
 
   }
-}```
+}
+```
 
 3. Write a script to return an array of all the user's &Record.NFT? in their @Record.Collection
 
