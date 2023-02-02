@@ -1,6 +1,6 @@
 1. Write a transaction to save a @Record.Collection to the signer's account, making sure to link the appropriate interfaces to the public path.
 
-```
+```rust
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
@@ -48,7 +48,8 @@ transaction(songName: String) {
 
 3. Write a script to return an array of all the user's &Record.NFT? in their @Record.Collection
 
-```import Record from 0xf8d6e0586b0a20c7
+```
+import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
 pub fun main(address: Address): [UInt64] {
@@ -57,11 +58,13 @@ pub fun main(address: Address): [UInt64] {
                           ?? panic("The address does not have a Collection")
 
   return publicCollection.getIDs()
-}```
+}
+```
 
 4. Write a transaction to save a @Artist.Profile to the signer's account, making sure to link it to the public so we can read it
 
-```import Artist from 0xf8d6e0586b0a20c7
+```
+import Artist from 0xf8d6e0586b0a20c7
 import Record from 0xf8d6e0586b0a20c7
 
 transaction(name: String) {
@@ -85,11 +88,13 @@ transaction(name: String) {
   execute {
 
   }
-}```
+}
+```
 
 5. Write a script to fetch a user's &Artist.Profile, borrow their recordCollection, and return an array of all the user's &Record.NFT? in their @Record.Collection from the recordCollection
 
-```import Artist from 0xf8d6e0586b0a20c7
+```
+import Artist from 0xf8d6e0586b0a20c7
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
@@ -109,11 +114,13 @@ pub fun main(address: Address): [UInt64] {
   //                         ?? panic("The address does not have a Collection")
 
   return collection.getIDs()
-}```
+}
+```
 
 6. Write a transaction to unlink a user's @Record.Collection from the public path
 
-```transaction() {
+```
+transaction() {
   
   prepare(signer: AuthAccount) {
     // Unlink your public profile
@@ -123,7 +130,8 @@ pub fun main(address: Address): [UInt64] {
   execute {
 
   }
-}```
+}
+```
 
 7. Explain why the recordCollection inside the user's @Artist.Profile is now invalid
 
@@ -131,7 +139,8 @@ pub fun main(address: Address): [UInt64] {
 
 8. Write a script that proves why your answer to #7 is true by trying to borrow a user's recordCollection from their &Artist.Profile
 
-```import Artist from 0xf8d6e0586b0a20c7
+```
+import Artist from 0xf8d6e0586b0a20c7
 
 pub fun main(signer: Address): String {
   let account: PublicAccount = getAccount(signer)
@@ -142,4 +151,5 @@ pub fun main(signer: Address): String {
   let profile: &Artist.Profile = capability.borrow()!
   
   return profile.name
-}``
+}
+```
