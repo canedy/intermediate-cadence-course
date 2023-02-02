@@ -25,7 +25,7 @@ transaction() {
 
 2. Write a transaction to mint some @Record.NFTs to the user's @Record.Collection
 
-```
+```rust
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
@@ -48,7 +48,7 @@ transaction(songName: String) {
 
 3. Write a script to return an array of all the user's &Record.NFT? in their @Record.Collection
 
-```
+```rust
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
@@ -63,7 +63,7 @@ pub fun main(address: Address): [UInt64] {
 
 4. Write a transaction to save a @Artist.Profile to the signer's account, making sure to link it to the public so we can read it
 
-```
+```rust
 import Artist from 0xf8d6e0586b0a20c7
 import Record from 0xf8d6e0586b0a20c7
 
@@ -93,7 +93,7 @@ transaction(name: String) {
 
 5. Write a script to fetch a user's &Artist.Profile, borrow their recordCollection, and return an array of all the user's &Record.NFT? in their @Record.Collection from the recordCollection
 
-```
+```rust
 import Artist from 0xf8d6e0586b0a20c7
 import Record from 0xf8d6e0586b0a20c7
 import NonFungibleToken from 0xf8d6e0586b0a20c7
@@ -119,7 +119,7 @@ pub fun main(address: Address): [UInt64] {
 
 6. Write a transaction to unlink a user's @Record.Collection from the public path
 
-```
+```rust
 transaction() {
   
   prepare(signer: AuthAccount) {
@@ -139,7 +139,7 @@ transaction() {
 
 8. Write a script that proves why your answer to #7 is true by trying to borrow a user's recordCollection from their &Artist.Profile
 
-```
+```rust
 import Artist from 0xf8d6e0586b0a20c7
 
 pub fun main(signer: Address): String {
