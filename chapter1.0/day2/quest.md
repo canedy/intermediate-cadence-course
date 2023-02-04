@@ -315,12 +315,12 @@ transaction(eventTitle: String) {
 ```
 
 **Commands**
+
 ```flow transactions send ./cadence/transactions/int/chp1/day2/createEventAsAdmin.cdc "Magic the gathing drinking party" --signer Justin```
 
 ```Result: A.f8d6e0586b0a20c7.Event.Collection(uuid: 31, ownedNFTs: {34: A.f8d6e0586b0a20c7.Event.NFT(uuid: 34, id: 34, eventTitle: "Magic the gathing drinking party", tickets: {"t2": A.f8d6e0586b0a20c7.Event.Ticket(uuid: 36, id: 36, name: "Seat Near Upper Deck"), "t1": A.f8d6e0586b0a20c7.Event.Ticket(uuid: 35, id: 35, name: "Seat Near Court")})})```
 
 Same commend failed after unliking `signer.unlink(/private/Admin)`
 
-```28 |     let admin: &Event.Admin = adminCapability.borrow() ?? panic("The capability is no longer valid.")
-   |                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^```
+```28 |     let admin: &Event.Admin = adminCapability.borrow() ?? panic("The capability is no longer valid.")```
 
