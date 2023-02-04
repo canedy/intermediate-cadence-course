@@ -5,24 +5,24 @@ let minter = &ExampleNFT.NFTMinter = minterCapability.borrow() ?? panic("The cap
 ```
 Explain in what scenario this would panic.
 
-- Well you are borrowing the capability you created. At this point in the code it is saying that we thought a private cablity existed in this case at `/private/NFTMinter` but it never got created or given to the account or it was unlinked. 
+- Well, you are borrowing the capability you created. At this point in the code, it is saying that we thought a private capability existed at `/private/NFTMinter,` but it never got created or given to the account or was unlinked. 
 
 2. Explain two reasons why passing around a private capability to a resource you own is different from simply giving users a resource to store in their account.
 
-- Private storage is owned by the account and people or things that are given special access.
+- Private storage is owned by the account, and people or things are given special access.
 
 3. Write (in words) a scenario where you would use private capabilities. It cannot be the same NFT example we saw today
 
-- Given that a you are creating an Event and Ticketing system. You could set up contract that only the event admin can mint a new event and assign tickets to that event. But once the event starts the Admin might want to give tempoary staff the ability to mint tickets and then revoke after the event.
+- Given that you are creating an Event and Ticketing system. Set up a contract that only the event admin can mint a new event and assign tickets. But once the event starts, the Admin might want to give temporary staff the ability to mint tickets and then revoke access after the event.
 
 ![image](https://user-images.githubusercontent.com/2507134/216756116-c6b26934-5361-450b-b5c3-974585ccec4a.png)
 
 4. Architect and implement your idea in #3. Show:
 
-Note: One thing I would do in the future is refactor this code so that minting the event and ticket resource happen in separate transactions. 
+**Note**: In the future, I need to refactor this code so that minting the event and ticket resource happens in separate transactions. Also need to create a proxy in a way that it takes in some kind of role (Minter or Admin) to give the proper capability with less code. 
 
 Event.cdc
-```
+```ruby
 import NonFungibleToken from 0xf8d6e0586b0a20c7
 
 pub contract Event: NonFungibleToken {
@@ -219,7 +219,7 @@ pub contract Event: NonFungibleToken {
 ```
 
 createProxyAdmin.cdc
-```
+```ruby
 import Event from 0xf8d6e0586b0a20c7
 
 transaction() {
@@ -231,7 +231,7 @@ transaction() {
 ```
 
 giveAdminRights.cdc
-```
+```ruby
 import Event from 0xf8d6e0586b0a20c7
 
 transaction(adminProxyAddress: Address) {
