@@ -5,4 +5,4 @@
 
 2. Rewrite this script from the NBATopShot official repo to link users' collections properly.
 
--  ```acct.link<__&TopShot.Collection__{__TopShot.MomentCollectionPublic, NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver, MetadataViews.ResolverCollection__}>(/public/MomentCollection, target: /storage/MomentCollection)```
+- acct.link<__&TopShot.Collection__{__TopShot.MomentCollectionPublic, NonFungibleToken.CollectionPublic, NonFungibleToken.Receiver, MetadataViews.ResolverCollection__}>(/public/MomentCollection, target: /storage/MomentCollection)
